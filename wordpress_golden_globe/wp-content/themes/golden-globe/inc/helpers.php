@@ -5,6 +5,22 @@ function agency_render(string $slug, array $args = []): void {
     get_template_part('template-parts/' . $slug, null, $args);
 }
 
+/**
+ * Renders all sections in the 'page_sections' flexible content field.
+ */
+function agency_render_page_sections(int $post_id = 0): void {
+    $post_id = $post_id ?: get_the_ID();
+    
+    if (agency_have_rows('page_sections', $post_id)) {
+        while (agency_have_rows('page_sections', $post_id)) {
+            agency_the_row();
+            $layout = get_row_layout();
+            $slug   = str_replace('_', '-', $layout);
+            agency_render('sections/section-' . $slug);
+        }
+    }
+}
+
 function agency_get_adjacent_posts(): array {
     return [
         'prev' => get_previous_post(),
@@ -97,6 +113,25 @@ function agency_the_row(string $selector = ''): void {
     if (isset($agency_rows_stack[$selector])) {
         $agency_rows_stack[$selector]['index']++;
     }
+}
+
+/**
+ * Compatibility wrapper for get_row_layout().
+ */
+function get_row_layout(): string {
+    global $agency_rows_stack;
+    
+    if (function_exists('get_row_layout')) {
+        return get_row_layout();
+    }
+
+    $current_loop = array_key_last($agency_rows_stack);
+    if ($current_loop && isset($agency_rows_stack[$current_loop])) {
+        $row = $agency_rows_stack[$current_loop]['data'][$agency_rows_stack[$current_loop]['index']];
+        return $row['acf_fc_layout'] ?? $row['layout'] ?? '';
+    }
+
+    return '';
 }
 
 /**

@@ -24,7 +24,25 @@ agency_add_meta_box(
             ]
         ],
     ],
-    ['page'] // Display on pages (filtered by template in future refinements if needed)
+    ['page'],
+    function($post) {
+        return (agency_is_template('template-home') || agency_is_template('template-sections-builder') || agency_is_template('template-about'));
+    }
+);
+
+// ─── ABOUT PAGE STORY ────────────────────────────────────────────────────────
+agency_add_meta_box(
+    'agency_about_story',
+    __('Company Story', 'golden-globe'),
+    [
+        ['name' => 'story_title', 'label' => __('Story Title', 'golden-globe'), 'type' => 'text'],
+        ['name' => 'story_text',  'label' => __('Detailed Story Text', 'golden-globe'), 'type' => 'textarea'],
+        ['name' => 'story_image', 'label' => __('Story Image', 'golden-globe'), 'type' => 'image'],
+    ],
+    ['page'],
+    function($post) {
+        return agency_is_template('template-about');
+    }
 );
 
 // ─── PAGE SECTIONS (FLEXIBLE CONTENT REPLACEMENT) ───────────────────────────
@@ -36,10 +54,13 @@ agency_add_meta_box(
             'name'  => 'page_sections',
             'label' => __('Sections Builder (JSON)', 'golden-globe'),
             'type'  => 'flexible_content',
-            'instructions' => __('Available Slugs: features_grid, cta_banner, image_text, portfolio_showcase, services_list, contact_section, testimonials, faq, stats_bar.', 'golden-globe')
+            'instructions' => __('Standard Slugs: hero, features-grid, cta-banner, image-text, portfolio-showcase, services-list, contact-section, testimonials, client-logos, team-highlights, pricing, values-grid, counter-stats.', 'golden-globe')
         ],
     ],
-    ['page']
+    ['page'],
+    function($post) {
+        return (agency_is_template('template-home') || agency_is_template('template-sections-builder') || agency_is_template('template-about'));
+    }
 );
 
 // ─── TEAM MEMBER DETAILS ─────────────────────────────────────────────────────

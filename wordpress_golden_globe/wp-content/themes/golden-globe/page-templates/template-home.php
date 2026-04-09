@@ -27,24 +27,8 @@ $hero_data = [
     <?php agency_render('sections/hero', $hero_data); ?>
 
     <!-- ── DYNAMIC SECTIONS BUILDER ── -->
-    <?php 
-    if (agency_have_rows('page_sections')) : 
-        while (agency_have_rows('page_sections')) : agency_the_row(); 
-            $layout = get_row_layout();
-            // Map row layouts to section files
-            $section_slug = str_replace('_', '-', $layout);
-            agency_render('sections/section-' . $section_slug);
-        endwhile; 
-    endif; 
-    ?>
-
-    <!-- ── DEFAULT SECTIONS (If not in builder) ── -->
-    <?php
-    // We can conditionally show these if the builder is empty or as a fallback
-    // For now, we assume the user builds the page via the builder.
-    ?>
+    <?php agency_render_page_sections(); ?>
 
 </main>
 
-<?php get_header(); ?>
 <?php get_footer(); ?>
