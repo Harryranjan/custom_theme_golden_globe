@@ -1,0 +1,313 @@
+/**
+ * Golden Globe — WordPress Admin Styles
+ * Loads on all admin screens via agency_admin_scripts().
+ */
+
+/* =============================================================================
+   QUICK EDIT / BULK EDIT PANEL — stacked label-above-input layout
+   ============================================================================= */
+
+/* Panel wrapper */
+.inline-edit-row td.colspanchange {
+  padding: 16px 20px 0;
+  background: #fff;
+  border-top: 3px solid #2271b1;
+}
+
+/* "QUICK EDIT" heading */
+.inline-edit-row h2.inline-edit-legend,
+.inline-edit-row .inline-edit-legend {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #50575e;
+  padding: 0 0 12px;
+  margin: 0;
+  border-bottom: none;
+}
+
+/* Two-column grid: left fieldset | right fieldset */
+.inline-edit-row td.colspanchange > fieldset,
+.inline-edit-row .inline-edit-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 40px;
+  align-items: start;
+}
+
+/* Each fieldset fills its column */
+.inline-edit-row fieldset.inline-edit-col-left,
+.inline-edit-row fieldset.inline-edit-col-right {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+/* Inner column div */
+.inline-edit-row .inline-edit-col {
+  padding: 0;
+}
+
+/* ── Every label: stacked (title above input) ── */
+.inline-edit-row .inline-edit-col > label,
+.inline-edit-row .inline-edit-col label.inline-edit-title,
+.inline-edit-row .inline-edit-col label.inline-edit-slug,
+.inline-edit-row .inline-edit-col label.inline-edit-author {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: #1d2327;
+}
+
+/* Label text (the <span class="title">) */
+.inline-edit-row .inline-edit-col label > .title,
+.inline-edit-row .inline-edit-col label > span.title {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #50575e;
+  text-transform: none;
+  min-width: 0;
+}
+
+/* All text inputs, selects — full width, clean style */
+.inline-edit-row input[type="text"],
+.inline-edit-row input[type="number"],
+.inline-edit-row select,
+.inline-edit-row textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #c3c4c7;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #1d2327;
+  background: #fff;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+  line-height: 1.4;
+}
+
+.inline-edit-row input[type="text"]:focus,
+.inline-edit-row input[type="number"]:focus,
+.inline-edit-row select:focus,
+.inline-edit-row textarea:focus {
+  border-color: #2271b1;
+  box-shadow: 0 0 0 1px #2271b1;
+  outline: none;
+}
+
+/* ── Date row: keep parts inline ── */
+.inline-edit-row fieldset.inline-edit-date {
+  border: none;
+  padding: 0;
+  margin-bottom: 14px;
+}
+
+.inline-edit-row fieldset.inline-edit-date legend {
+  font-size: 12px;
+  font-weight: 600;
+  color: #50575e;
+  padding: 0;
+  margin-bottom: 6px;
+  float: none;
+}
+
+.inline-edit-row .timestamp-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+/* Date part inputs — override the full-width rule */
+.inline-edit-row .timestamp-wrap input[type="text"],
+.inline-edit-row .timestamp-wrap select {
+  width: auto;
+  display: inline-block;
+}
+
+.inline-edit-row .timestamp-wrap select {
+  width: 90px;
+}
+.inline-edit-row .timestamp-wrap input[name="jj"] {
+  width: 34px;
+}
+.inline-edit-row .timestamp-wrap input[name="aa"] {
+  width: 52px;
+}
+.inline-edit-row .timestamp-wrap input[name="hh"] {
+  width: 34px;
+}
+.inline-edit-row .timestamp-wrap input[name="mn"] {
+  width: 34px;
+}
+
+/* ── Password group (input + OR + Private) ── */
+.inline-edit-row .inline-edit-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.inline-edit-row .inline-edit-group label.alignleft {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-direction: row; /* keep password label inline */
+  margin-bottom: 0;
+  font-size: 13px;
+}
+
+.inline-edit-row .inline-edit-group label.alignleft .title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #50575e;
+  white-space: nowrap;
+}
+
+.inline-edit-row .inline-edit-group label.alignleft input[type="text"] {
+  width: 140px;
+}
+
+.inline-edit-row .inline-edit-group span.alignleft {
+  font-size: 12px;
+  color: #646970;
+}
+
+/* ── Checkbox labels (Allow Comments, Private) ── */
+.inline-edit-row .inline-edit-col label.alignleft,
+.inline-edit-row .inline-edit-col label.inline-edit-private {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: #1d2327;
+}
+
+.inline-edit-row .inline-edit-col label input[type="checkbox"] {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* Order field: narrower */
+.inline-edit-row input[name="menu_order"] {
+  width: 72px !important;
+}
+
+/* ── Save / Cancel row ── */
+.inline-edit-row .inline-edit-save {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 0 16px;
+  margin-top: 8px;
+}
+
+.inline-edit-row .inline-edit-save .button-primary,
+.inline-edit-row .inline-edit-save .save {
+  background: #2271b1;
+  border-color: #2271b1;
+  color: #fff;
+  border-radius: 4px;
+  padding: 5px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: none;
+  text-shadow: none;
+  height: auto;
+  line-height: 1.6;
+}
+
+.inline-edit-row .inline-edit-save .button-primary:hover,
+.inline-edit-row .inline-edit-save .save:hover {
+  background: #135e96;
+  border-color: #135e96;
+}
+
+.inline-edit-row .inline-edit-save .cancel,
+.inline-edit-row .inline-edit-save .button-link-delete {
+  color: #646970;
+  font-size: 13px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.inline-edit-row .inline-edit-save .cancel:hover {
+  color: #d63638;
+}
+
+.inline-edit-row .inline-edit-save .spinner {
+  float: none;
+  margin: 0;
+}
+
+/* =============================================================================
+   BULK EDIT — same stacked style
+   ============================================================================= */
+
+.bulk-edit-row td.colspanchange {
+  padding: 16px 20px 0;
+  background: #fff;
+  border-top: 3px solid #2271b1;
+}
+
+.bulk-edit-row .inline-edit-col > label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 14px;
+  font-size: 13px;
+}
+
+.bulk-edit-row .inline-edit-col label > .title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #50575e;
+}
+
+.bulk-edit-row select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* =============================================================================
+   PAGES LIST — row hover + active inline row
+   ============================================================================= */
+
+#the-list tr:hover td,
+#the-list tr:hover th {
+  background-color: #f0f6fc;
+}
+
+#the-list .inline-edit-row td {
+  background: #fff;
+}
+
+/* =============================================================================
+   ACF FIELD GROUPS — hover
+   ============================================================================= */
+
+.acf-admin-page .wp-list-table tr:hover td {
+  background-color: #f0f6fc;
+}
+
+/* =============================================================================
+   GENERAL POLISH
+   ============================================================================= */
+
+.row-actions {
+  font-size: 12px;
+}

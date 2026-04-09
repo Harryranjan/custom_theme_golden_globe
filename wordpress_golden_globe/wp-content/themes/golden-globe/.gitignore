@@ -1,0 +1,8 @@
+# Dependencies (not used — kept as safety net)
+node_modules/
+vendor/
+
+# Logs & OS files
+*.log
+.DS_Store
+Thumbs.db

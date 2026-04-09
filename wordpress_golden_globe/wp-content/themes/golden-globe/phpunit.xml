@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<phpunit
+    bootstrap="tests/phpunit/bootstrap.php"
+    colors="true"
+    verbose="true"
+    stopOnError="false"
+    stopOnFailure="false">
+    <testsuites>
+        <testsuite name="agency-theme">
+            <directory>tests/phpunit</directory>
+        </testsuite>
+    </testsuites>
+    <coverage>
+        <include>
+            <directory>inc</directory>
+        </include>
+    </coverage>
+</phpunit>
