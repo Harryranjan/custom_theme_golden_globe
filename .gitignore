@@ -1,0 +1,16 @@
+# WordPress core (not needed in version control)
+wordpress_golden_globe/wp-admin/
+wordpress_golden_globe/wp-includes/
+
+# Sensitive config
+wordpress_golden_globe/wp-config.php
+
+# Uploads and plugins (environment-specific)
+wordpress_golden_globe/wp-content/uploads/
+wordpress_golden_globe/wp-content/plugins/
+
+# OS & editor files
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
